@@ -1,0 +1,15 @@
+.rvmrc
+*.swp
+*.swa
+*.swb
+*.swo
+/.bundle
+/log/*.log
+/tmp
+/config/database.yml
+/config/development.yml
+.DS_Store
+/uploads
+/public/uploads
+*.numbers
+/spec/fixtures/ephemeral_response
