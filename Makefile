@@ -13,7 +13,7 @@ ex5:
 	cc 5/ex5.c -o ex5
 
 ex6:
-	cc 6/ex6.c -o ex6
+	cc -Wall -g 6/ex6.c -o ex6
 
 ex7:
 	cc 7/ex7.c -o ex7
