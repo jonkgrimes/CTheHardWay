@@ -18,5 +18,8 @@ ex6:
 ex7:
 	cc 7/ex7.c -o ex7
 
+ex8:
+	cc 8/ex8.c -o ex8
+
 clean: 
 	rm -f ex*
