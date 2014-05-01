@@ -21,5 +21,11 @@ ex7:
 ex8:
 	cc 8/ex8.c -o ex8
 
+ex9:
+	cc -Wall -g 9/ex9.c -o ex9
+
+ex10:
+	cc -Wall -g 10/ex10.c -o ex10
+
 clean: 
 	rm -f ex*
