@@ -64,8 +64,8 @@ int main(int argc, char *argv[])
   Person_print(ken);
 
   // destroy them both
-  Person_destroy(jon);
-  Person_destroy(ken);
+  // Person_destroy(jon);
+  // Person_destroy(ken);
 
   return 0;
 }
