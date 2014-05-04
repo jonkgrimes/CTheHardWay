@@ -126,6 +126,19 @@ void Database_get(struct Connection *conn, int id)
   }
 }
 
+void Database_find(struct Connection *conn, const char *value)
+{
+  struct Address *addrs[] = &conn->db->rows;
+  struct Address *result = 0;
+  int i = 0; 
+
+  for(i = 0; i < MAX_ROWS; i++) {
+    if(addrs[i]->name == value || addrs[i]->email == value) {
+      Address_print(addrs[i]);
+    }
+  }
+}
+
 void Database_delete(struct Connection *conn,int id)
 {
   struct Address addr = { .id = id, .set = 0 };
@@ -148,7 +161,7 @@ void Database_list(struct Connection *conn)
 
 int main(int argc, char *argv[])
 {
-  if(argc > 3) die("USAGE: ex17 <dbfile> <action> [action params]");
+  if(argc < 3) die("USAGE: ex17 <dbfile> <action> [action params]");
 
   char *filename = argv[1];
   char action = argv[2][0];
@@ -177,11 +190,15 @@ int main(int argc, char *argv[])
       Database_delete(conn, id);
       Database_write(conn);
       break;
+    case 'f':
+      if(argc != 4) die("Need a value to search for");
+      Database_find(conn, argv[4]);
+      break;
     case 'l':
-        Database_list(conn);
-        break;
+      Database_list(conn);
+      break;
     default:
-        die("Invalid action, only: c=create, g=get, s=set, d=del, l=list");
+      die("Invalid action, only: c=create, g=get, s=set, d=del, l=list");
   }
 
   Database_close(conn);
