@@ -97,9 +97,9 @@ int *partition(int *array, int *left, int *right, int *pivot)
 
 void swap(int *left, int *right)
 {
-  int *temp = left;
-  left = right;
-  right = temp;
+  int temp = *left;
+  *left = *right;
+  *right = temp;
 }
 
 int sorted_order(int a, int b)
