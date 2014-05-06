@@ -17,6 +17,7 @@ void die(const char *message)
 
 // creates a fake type for the function pointer
 typedef int (*compare_cb)(int a, int b);
+typedef int (*sort)(int *numbers, int count, compare_cb cmp);
 
 int *bubble_sort(int *numbers, int count, compare_cb cmp)
 {
@@ -40,6 +41,37 @@ int *bubble_sort(int *numbers, int count, compare_cb cmp)
   }
 
   return target;
+}
+
+int *quicksort(int *numbers, int count, compare_cb cmp)
+{
+  int *target = malloc(count *sizeof(int));
+  
+  if(!target) die("Memory error.");
+
+  memcpy(target, numbers, count * sizeof(int));
+
+  quicksort_r(target,target[0],target[count-1],cmp);
+
+  return target;
+}
+
+void quicksort_r(int *array, int *left, int *right)
+{
+  if(left < right) {
+    new_pivot = partition(array,left,right,
+  }
+}
+
+void partition(int *array, int *left, int *right, int pivot_index)
+{
+}
+
+void swap(*left,*right)
+{
+  int temp = left;
+  left = right;
+  right = temp;
 }
 
 int sorted_order(int a, int b)
@@ -75,6 +107,13 @@ void test_sorting(int *numbers, int count, compare_cb cmp)
   printf("\n");
 
   free(sorted);
+
+  unsigned char *data = (unsigned char *)cmp;
+
+  for(i = 0; i < 25; i++) {
+    printf("%02x:", data[i]);
+  }
+  printf("\n");
 }
 
 int main(int argc, char *argv[])
