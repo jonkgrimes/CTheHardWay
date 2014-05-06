@@ -17,6 +17,7 @@ void die(const char *message)
 
 // creates a fake type for the function pointer
 typedef int (*compare_cb)(int a, int b);
+typedef int *(sorter)(int *numbers, int count, compare_cb cmp); 
 
 int *bubble_sort(int *numbers, int count, compare_cb cmp)
 {
@@ -62,10 +63,10 @@ int strange_order(int a, int b)
 }
 
 // test to make sure things are sorting correctly
-void test_sorting(int *numbers, int count, compare_cb cmp)
+void test_sorting(int *numbers, int count, sorter sort, compare_cb cmp)
 {
   int i = 0;
-  int *sorted = bubble_sort(numbers, count, cmp);
+  int *sorted = sort(numbers, count, cmp);
 
   if(!sorted) die("Failed to sort as requested.");
 
@@ -92,9 +93,9 @@ int main(int argc, char *argv[])
     numbers[i] = atoi(inputs[i]);
   }
 
-  test_sorting(numbers, count, sorted_order);
-  test_sorting(numbers, count, reverse_order);
-  test_sorting(numbers, count, strange_order);
+  test_sorting(numbers, count, bubble_sort, sorted_order);
+  test_sorting(numbers, count, bubble_sort, reverse_order);
+  test_sorting(numbers, count, bubble_sort, strange_order);
 
   free(numbers);
 
