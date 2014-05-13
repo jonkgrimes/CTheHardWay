@@ -3,6 +3,8 @@
 #include <stdarg.h>
 #include "dbg.h"
 
+#define MAX_DATA 100
+
 int read_string(char **out_string, int max_buffer)
 {
   *out_string = calloc(1, max_buffer + 1);
@@ -44,7 +46,7 @@ int read_scan(const char *fmt, ...)
   char **out_string = NULL;
   int max_buffer = 0;
 
-  va_list = argp;
+  va_list argp;
   va_start(argp, fmt);
 
   for(i = 0; fmt[i] != '\0'; i++) {
@@ -71,15 +73,16 @@ int read_scan(const char *fmt, ...)
           break;
         default:
           sentinel("Invalid format.");
-      } else {
-        fgetc(stdin);
       }
-
-      check(!feof(stdin) && !ferror(stdin), "Input error.");
+    } else {
+      fgetc(stdin);
     }
 
-    va_end(argp);
-    return 0;
+    check(!feof(stdin) && !ferror(stdin), "Input error.");
+  }
+
+  va_end(argp);
+  return 0;
 
 error:
   va_end(argp);
@@ -93,7 +96,28 @@ int main(int argc, char *argv[])
   char *last_name = NULL;
 
   int age = 0;
-  printf("
+  printf("What's your first name? ");
+  int rc = read_scan("%s", MAX_DATA, &first_name);
+  check(rc == 0, "Failed first name.");
+
+  printf("What's your initial? ");
+  rc = read_scan("%c\n", &initial);
+  check(rc == 0, "Failed initial.");
+
+  printf("What's your last name? ");
+  rc = read_scan("%s", MAX_DATA, &last_name);
+
+  printf("How old are you?");
+  rc = read_scan("%d", &age);
+
+  printf("---- RESULTS ----\n");
+  printf("First name: %s", first_name);
+  printf("Initial: '%c'\n", initial);
+  printf("Last name: %s", last_name);
+  printf("Age: %d\n", age);
+
+  free(first_name);
+  free(last_name);
 
   return 0;
 error:

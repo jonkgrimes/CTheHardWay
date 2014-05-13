@@ -13,3 +13,5 @@
 /public/uploads
 *.numbers
 /spec/fixtures/ephemeral_response
+*/*.dSYM
+*/*.dSYM/*
