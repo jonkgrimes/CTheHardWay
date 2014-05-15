@@ -104,5 +104,19 @@ Shell CURL_SH {
 };
 
 Shell CONFIGURE_SH = {
-  
+  .exe = "./configure",
+  .dir = "/tmp/pkg-build",
+  .args = {"configure", "OPTS", NULL}
+};
+
+Shell MAKE_SH = {
+  .exe = "make",
+  .dir = "/tmp/pkg-build",
+  .args = {"make", "OPTS", NULL}
+};
+
+Shell INSTALL_SH = {
+  .exe = "sudo",
+  .dir = "/tmp/pkg-build",
+  .args = {"sudo", "make", "TARGET", NULL}
 };
