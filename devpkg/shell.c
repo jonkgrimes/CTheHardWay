@@ -26,9 +26,10 @@ int Shell_exec(Shell template, ..)
     for(i = 0; template.args[i] != NULL; i++) {
       if(strcmp(template.args[i], key) == 0) {
         template.args[i] = arg;
-        check(template.args[i] == arg, "Failed to assign argument.");
         break; // found it
       }
+
+      check(i > template.argc, "The wrong number of arguments was given.");
     }
   }
 

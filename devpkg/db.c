@@ -1,10 +1,10 @@
-#include <uistd.h>
+#include <unistd.h>
 #include <apr_errno.h>
 #include <apr_file_io.h>
 
-#include <"db.h">
-#include <"bstrlib.h">
-#include <"dbg.h">
+#include "db.h"
+#include "bstrlib.h"
+#include "dbg.h"
 
 static FILE *DB_open(const char *path, const char *mode)
 {
@@ -25,7 +25,7 @@ static bstring DB_load()
   check(db, "Failed to open database: %s", DB_FILE);
 
   data = bread((bNread)fread, db);
-  check(data, "Failed to read from db file: %s". DB_FILE);
+  check(data, "Failed to read from db file: %s", DB_FILE);
 
   DB_close(db);
   return data;

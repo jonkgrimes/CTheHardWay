@@ -5,7 +5,7 @@
 
 #include <apr_thread_proc.h>
 
-typedef stuct Shell {
+typedef struct Shell {
   const char *dir;
   const char *exe;
 
