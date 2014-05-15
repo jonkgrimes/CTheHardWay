@@ -14,6 +14,7 @@ typedef stuct Shell {
   apr_exit_why_e exit_why;
   int exit_code;
 
+  int argc;
   const char *args[MAX_COMMAND_ARGS];
 } Shell;
 

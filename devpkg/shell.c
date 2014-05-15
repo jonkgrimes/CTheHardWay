@@ -26,6 +26,7 @@ int Shell_exec(Shell template, ..)
     for(i = 0; template.args[i] != NULL; i++) {
       if(strcmp(template.args[i], key) == 0) {
         template.args[i] = arg;
+        check(template.args[i] == arg, "Failed to assign argument.");
         break; // found it
       }
     }
@@ -81,6 +82,7 @@ error:
 Shell CLEANUP_SH = {
   .exe = "rm",
   .dir = "/tmp",
+  .argc = 6,
   .args = {"rm", "-rf", "/tmp/pkg-build", "tmp/pkg=src.tar.gz",
     "tmp/pkg-src.tar.bz2", "/tmp/DEPENDS", NULL}
 };
@@ -88,35 +90,41 @@ Shell CLEANUP_SH = {
 Shell GIT_SH = {
   .exe = "git",
   .dir = "/tmp",
+  .argc = 4,
   .args = {"git", "clone", "URL", "pkg-build", NULL}
 };
 
 Shell TAR_SH {
   .exe = "tar",
   .dir = "/tmp/pkg-build",
+  .argc = 5,
   .args = {"tar", "-xzf", "FILE", "--strip-components", "1", NULL}
 };
 
 Shell CURL_SH {
   .exe = "curl",
   .dir = "/tmp",
+  .argc = 5,
   .args = { "curl", "-L", "-o", "TARGET", "URL", NULL}
 };
 
 Shell CONFIGURE_SH = {
   .exe = "./configure",
   .dir = "/tmp/pkg-build",
+  .argc = 2,
   .args = {"configure", "OPTS", NULL}
 };
 
 Shell MAKE_SH = {
   .exe = "make",
   .dir = "/tmp/pkg-build",
+  .argc = 2,
   .args = {"make", "OPTS", NULL}
 };
 
 Shell INSTALL_SH = {
   .exe = "sudo",
   .dir = "/tmp/pkg-build",
+  .argc = 3,
   .args = {"sudo", "make", "TARGET", NULL}
 };
