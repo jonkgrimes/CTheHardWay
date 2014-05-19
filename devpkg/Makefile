@@ -1,6 +1,6 @@
 PREFIX?=/usr/local/Cellar
-CFLAGS=-g -Wall -I${PREFIX}/apr/1.5.1/include/apr-1 -I${PREFIX}/apr-util/1.5.3/include
-LDFLAGS=-L${PREFIX}/apr/1.5.1/lib/ -lapr-1 -pthread -laprutil-1
+CFLAGS=-g -Wall -I${PREFIX}/apr/1.5.1/include/apr-1 -I${PREFIX}/apr-util/1.5.3/include/apr-util-1
+LDFLAGS=-L${PREFIX}/apr/1.5.1/lib -lapr-1 -pthread -laprutil-1
 
 all: devpkg
 
