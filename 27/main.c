@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
 
   // notice that it's 7 chars + \0
   char to[] = "0123456";
-  int to_len sizeof(to);
+  int to_len = sizeof(to);
 
   debug("Copying '%s': %d to '%s': %d", from, from_len, to, to_len);
 
