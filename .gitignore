@@ -15,3 +15,5 @@
 /spec/fixtures/ephemeral_response
 */*.dSYM
 */*.dSYM/*
+.vagrant/
+.vagrant/*
