@@ -34,6 +34,7 @@ void List_clear_destroy(List *list)
 void List_push(List *list, void *value)
 {
   ListNode *node = calloc(1, sizeof(ListNode));
+  check_mem(node);
 
   node->value = value;
 
@@ -52,7 +53,7 @@ error:
   return;
 }
 
-void List_pop(List *list)
+void *List_pop(List *list)
 {
   ListNode *node = list->last;
   return node != NULL ? List_remove(list, node) : NULL;
